@@ -347,6 +347,26 @@ my $fail_code = sub {
     year => 2005,
   })->first;
   ok(!defined($cd), q{failed txn_do didn't add failed txn's cd});
+
+  throws_ok(sub {
+    my $schema = DBICTest->init_schema;
+
+    $schema->txn_do(sub {
+       eval {
+         $schema->txn_do(sub {
+           die 'fail!';
+         });
+       }
+    });
+  }, 'unpropogated rollback - text tbd');
+
+  throws_ok(sub {
+    my $schema = DBICTest->init_schema;
+
+    $schema->txn_do(sub {
+       eval { my $g = $schema->txn_scope_guard }
+    });
+  }, 'unpropogated rollback - text tbd');
 }
 
 
