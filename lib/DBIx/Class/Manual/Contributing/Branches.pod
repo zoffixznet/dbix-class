@@ -1,6 +1,6 @@
 =head1 NAME
 
-DBIx::Class::Manual::Branches - Current branches
+DBIx::Class::Manual::Contributing::Branches - Current branches
 
 =head1 List of current branches
 

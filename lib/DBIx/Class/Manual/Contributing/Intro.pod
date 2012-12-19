@@ -53,4 +53,9 @@ stuff: failing tests, documentation, examples, etc. Work is being done to open
 up our process with more options for folks not considering themselves hard-core
 developers.
 
+=head1 Next step
+
+You should go on reading the Manifest at
+L<DBIx::Class::Manual::Contributing::Manifesto> now.
+
 =cut

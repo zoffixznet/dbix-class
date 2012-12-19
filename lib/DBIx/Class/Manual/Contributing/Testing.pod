@@ -1,5 +1,5 @@
 =head1 NAME
 
-DBIx::Class::Manual::Testing - The testsuite of DBIx::Class
+DBIx::Class::Manual::Contributing::Testing - The testsuite of DBIx::Class
 
 =cut

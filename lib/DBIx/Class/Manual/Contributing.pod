@@ -24,6 +24,11 @@ I<These pages are in their infancy, expect many changes, and don't expect much c
 
 Main introduction and overview of all relevant ressources.
 
+=head2 L<DBIx::Class::Manual::Contributing::Manifesto>
+
+The manifest which defines the guidelines of the main software development
+processes.
+
 =head2 L<DBIx::Class::Manual::Contributing::Branches>
 
 This is the most relevant part of the contribution documentation for the
