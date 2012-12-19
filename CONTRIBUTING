@@ -17,3 +17,8 @@ fast-forward merges lead to a cleaner history.
 
 Yes, this does mean that DBIx::Class is moving to a formal code review process.
 Yes, this does mean that you will never merge your own code to master.
+
+----------------
+
+Please also take a look at DBIx::Class::Manual::Contributing, included in this
+distribution.
