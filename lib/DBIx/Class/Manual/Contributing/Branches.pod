@@ -1,0 +1,151 @@
+=head1 NAME
+
+DBIx::Class::Manual::Branches - Current branches
+
+=head1 List of current branches
+
+=head2 abandoned/mysql_columns_info_for
+
+=head2 abandoned/mysql_grant_privileges_sketch
+
+=head2 abandoned/pod_concepts_dialogue_fmt
+
+=head2 abandoned/run_file_against_storage
+
+=head2 abandoned/runtime_added_relships
+
+=head2 blocked_by_lack_of_per_resultset_storage_attributes/mysql_bit_as_tinyint
+
+=head2 blocked_by_lack_of_per_resultset_storage_attributes/mysql_insert_multi
+
+=head2 blocked_by_lack_of_per_resultset_storage_attributes/no_ir_on_views
+
+=head2 blocked_by_lack_of_per_resultset_storage_attributes/pg_cursors
+
+=head2 blocked_by_lack_of_per_resultset_storage_attributes/prepare_cached
+
+=head2 blocked_by_sqla_op_func_ambiguity/datetime_manipulation_dsl
+
+=head2 dq
+
+=head2 dq-with-sql-server-2012
+
+=head2 force_explicit_join_type
+
+=head2 historic/DBIx-Class-Field_cdbicompat_integration
+
+=head2 historic/txn_guard_breakage_discussion_and_sample_code
+
+=head2 historic_rejected/introspectable_m2m_merge
+
+=head2 maint/0.08000
+
+=head2 master
+
+=head2 master+1
+
+=head2 people/abraxxa/has_relationship_loaded
+
+=head2 people/abraxxa/populate_doc_improvements
+
+=head2 people/batman/schema_diff
+
+=head2 people/bugthing/customjoinargs
+
+=head2 people/caelum/dt_cleanup_old
+
+=head2 people/caelum/enable_utf8
+
+=head2 people/caelum/poe
+
+=head2 people/caldrin/compose_namespace_fixes
+
+=head2 people/dhoss/pg_with_recursive
+
+=head2 people/edenc/load_class_warning
+
+=head2 people/evaldas/index-hint
+
+=head2 people/frew/contributor-manual
+
+=head2 people/frew/filter-column-rsrc
+
+=head2 people/frew/join-args
+
+=head2 people/frew/op-func
+
+=head2 people/frew/resultset-components
+
+=head2 people/goraxe/dbic_admin_sqlt_args
+
+=head2 people/haarg/sqlite-improvements
+
+=head2 people/ilmari/deferred-exception-propagation
+
+=head2 people/jnap/moo_replication
+
+=head2 people/jnap/parameterized_unique_constraints
+
+=head2 people/riba/alias-fail
+
+=head2 people/riba/find_or_create_buggery
+
+=head2 people/riba/order_by_nested_func
+
+=head2 pod/result_class
+
+=head2 rfc/populate_single_has_many
+
+=head2 rfc/strict_mode_for_find
+
+=head2 rfc/xunit_style_testing
+
+=head2 temp_master
+
+=head2 topic/admin_to_moo
+
+=head2 topic/alias-columns
+
+=head2 topic/concat_normalize
+
+=head2 topic/delete-from-as_subselect_rs-fail
+
+=head2 topic/exception_concerns
+
+=head2 topic/factor-out-source-tree
+
+=head2 topic/firebird_fails
+
+=head2 topic/fix-silent-txn-failure--horrifying
+
+=head2 topic/fk-introspection
+
+=head2 topic/inflatecolumn-datetime-pod-timezone
+
+=head2 topic/is_int_type
+
+=head2 topic/lazy_load
+
+=head2 topic/mssql-2012-limit-dialect
+
+=head2 topic/mssql_datatype_tests
+
+=head2 topic/multi_update
+
+=head2 topic/oracle_multiblob_bug
+
+=head2 topic/prefetch-wishlist-tests
+
+=head2 topic/prefetch_tests
+
+=head2 topic/rel_redef_warn
+
+=head2 topic/replicated_conninfo
+
+=head2 topic/rs_doc_fix2
+
+=head2 topic/todo_test_cleanup
+
+=head2 topic/travis-settings
+
+=cut

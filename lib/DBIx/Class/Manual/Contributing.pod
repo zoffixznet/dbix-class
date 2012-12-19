@@ -1,0 +1,62 @@
+=head1 NAME
+
+DBIx::Class::Manual::Contributing - Index of contributors manuals
+
+=head1 DESCRIPTION
+
+This documentation part is dedicated to the coordination of the development of
+[DBIx::Class](http://metacpan.org/module/DBIx::Class). The information
+presented here is not intended for regular users of this distribution, but
+instead targets people who want to help and support the DBIx::Class project
+(from here on referred to as DBIC).
+
+If you only want information about using DBIx::Class this is the wrong place.
+Instead please go to the
+[DBIx::Class Manual](http://metacpan.org/module/DBIx::Class::Manual).
+
+B<WORK VERY MUCH IN PROGRESS>
+
+I<These pages are in their infancy, expect many changes, and don't expect much coherent content yet.>
+
+=head1 INDEX
+
+=head2 L<DBIx::Class::Manual::Contributing::Intro>
+
+Main introduction and overview of all relevant ressources.
+
+=head2 L<DBIx::Class::Manual::Contributing::Branches>
+
+This is the most relevant part of the contribution documentation for the
+developers and addresses the current problems or the current running feature
+requests. It's not meant to be a ticket system, but more of a “birds eye view”
+of the current state of things. The absolute current state is determined by the
+(to be documented) B<dbictodo> tool.
+
+=head2 L<DBIx::Class::Manual::Contributing::Repository>
+
+Informations about the usage of the repository.
+
+=head2 L<DBIx::Class::Manual::Contributing::Contact>
+
+This section covers the communication channels available for the contributors
+of L<DBIx::Class>.
+
+=head2 L<DBIx::Class::Manual::Contributing::Testing>
+
+This section covers up information you might need regarding testing with
+L<DBIx::Class>. This includes information about how to write failing tests, how
+YOU can help testing new releases with your own testsuite, and how we can
+progress to make the testing even more automatically for other engines. It also
+explains the relevant parts of the test suite (i.e. there seems to be a large
+misconception that having the suite run against different engines is what
+counts the most). Also the beginnings of a spec for a L<DBI> (in general) and
+L<DBIx::Class> "use at home" testing VM.
+
+=head2 L<DBIx::Class::Manual::Contributing::Marketing>
+
+This section will try to give all information you might need to animate others
+to use and/or contribute to DBIC. The lower hanging fruit is to get people to
+start using Perl in general, but the section mainly focuses on how using an OO
+wrapper helps one access their data.
+
+=cut

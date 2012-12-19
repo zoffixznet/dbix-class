@@ -1,0 +1,56 @@
+=head1 NAME
+
+DBIx::Class::Manual::Contributing::Intro - Introduction for contributors
+
+=head1 OVERVIEW
+
+DBIC differs in many ways from the average CPAN project. For starters it's
+among the most important Perl distributions in general, due to its popularity
+when it comes to interaction with a RDBMS. The O/R mapping is not the only
+reason programmers tend to reach for DBIC. For instance its storage abstraction
+layer contains about 8000 lines of code of various workarouns for deficiencies
+and gotchas in different [DBI](http://metacpan.org/module/DBI) drivers.
+
+DBIC also presents a special opportunity for Perl Marketing since the project 
+captures very well the spirit, mentality and power of Perl, while at the same
+time presenting it with much smaller "surface area". The API is relatively
+straight forward, and is only getting better and easier for newcomers to grok.
+Keeping this trend, and not letting the already existing potential go to waste
+is of paramount importance.
+
+But DBIC has its problems, and while they only grow larger, the amount of
+dedicated developers is not on not growing but recently shrank rastically. At
+the same time the project has reached a plateau where there aren't any low
+hanging fruits which can get new developers involved. One may argue that at
+this point adding new developers could even cause destabilization of the
+underlying project architecture, as a lot of the inherent complexity is not
+readily apparent. Hence one of (if not the) major goal currently is not to
+attract more developers, but find a way to relieve the existing devs from as
+many tasks as possible.
+
+These manuals are intended to document the DBIC development process, listing
+the details of individual tasks and more importantly the associated problems.
+While it is hard to find a one magical solution to everything, this is at least
+an attempt to centralize all this information.
+
+=head1 BEWARE
+
+These pages are also intended to double as a gateway for those who really want
+help DBIx::Class development. A warning is in order to all new contributors –
+dev-work on the DBIC core is not a alk in the park. The codebase does not make
+too many developers cry, though there is still much room for improvement.
+However the requirements of data safety, coherent design and immense backwards
+compatibility combine for a rather rough and nitpicky review proccess. While
+many changes to the development process are envisioned in the near future, the
+bottom line remains – a contributions will be delayed as long as it tangibly
+violates present or future design considerations.
+
+[ list of these requirements / design vision needs to go here ].
+
+With that said, keep in mind that even if you do not believe you can contribute
+a code patch of the required quality, you can still help with tons of other
+stuff: failing tests, documentation, examples, etc. Work is being done to open
+up our process with more options for folks not considering themselves hard-core
+developers.
+
+=cut

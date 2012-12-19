@@ -1,0 +1,45 @@
+=head1 NAME
+
+DBIx::Class::Manual::Contributing::Contact - Communication channels of the contributors
+
+=head1 Web Site
+
+[http://www.dbix-class.org/](http://www.dbix-class.org/)
+
+Needs a little remake, not really maintained. **CALL FOR HELP**
+
+=head1 Twitter
+
+[https://twitter.com/dbix_class](https://twitter.com/dbix_class)
+
+A bit outdated and unused, will get more love again.
+
+=head1 Public Mailinglist
+
+[http://lists.scsys.co.uk/mailman/listinfo/dbix-class](http://lists.scsys.co.uk/mailman/listinfo/dbix-class)
+
+Used for the standard user traffic, questions and answers.
+
+=head1 Public IRC Channel
+
+[irc.perl.org #dbix-class](irc://irc.perl.org/#dbix-class)
+
+This is the public channel which is used for the standard user traffic.
+
+=head1 Developer Mailinglist
+
+[http://lists.scsys.co.uk/mailman/listinfo/dbix-class-devel](http://lists.scsys.co.uk/mailman/listinfo/dbix-class-devel)
+
+Developer only traffic, read-only for others.
+
+=head1 Developer IRC Channel
+
+[irc.perl.org #dbic](irc://irc.perl.org/#dbix-class)
+
+This is the public channel which is used for the standard user traffic.
+
+=head1 RT Bug Tracker
+
+[https://rt.cpan.org/Dist/Display.html?Queue=DBIx-Class](https://rt.cpan.org/Dist/Display.html?Queue=DBIx-Class)
+
+=cut

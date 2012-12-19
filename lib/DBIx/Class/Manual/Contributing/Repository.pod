@@ -1,0 +1,5 @@
+=head1 NAME
+
+DBIx::Class::Manual::Repository - Information about the usage of the DBIx::Class repository
+
+=cut
