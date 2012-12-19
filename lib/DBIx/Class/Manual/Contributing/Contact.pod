@@ -34,9 +34,9 @@ Developer only traffic, read-only for others.
 
 =head1 Developer IRC Channel
 
-[irc.perl.org #dbic](irc://irc.perl.org/#dbix-class)
+[irc.perl.org #dbic](irc://irc.perl.org/#dbic)
 
-This is the public channel which is used for the standard user traffic.
+This is the developer channel, but please use #dbix-class, even if you are a contributor and just have a user level question.
 
 =head1 RT Bug Tracker
 
