@@ -1,0 +1,98 @@
+=head1 NAME
+
+DBIx::Class::Manual::Contributing::VersionNumber - What the C<DBIx::Class> version
+number means
+
+=head1 DEFINTION
+
+The C<DBIx::Class> version number is actually three numbers.  When conversing
+with humans we format it like this:
+
+ Did you hear DBIx::Class 1.2.3 came out today?  Version 1.1.10 was only
+ released a month ago!
+
+But when interacting with perl itself those numbers are formatted 1.002003, or
+more strictly:
+
+ sprintf '%d.%03d%03d', $breaking, $major, $minor
+
+=head2 And then there were three
+
+The three numbers are defined as follows:
+
+=over 2
+
+=item * C<$breaking>
+
+This number only increases when backwards compatibility will be broken to
+correct designs in the API.  Note that as usual, this number will not be changed
+lightly.
+
+=item * C<$major>
+
+This number gets incremented when a major new feature lands.  A major
+feature would be one that affects all users, as opposed to users of just
+certain DBD's.  An example of such a feature might be extended relationships.
+
+=item * C<$minor>
+
+This number gets incremented when very minor features land, or for bugfixes.
+Small features are DBD dependant, or do not significantly change the way a user
+interacts with C<DBIx::Class>.  Two examples of such a change would be SQL
+Server 2012 pagination support, or the addition of C<quote_names> to
+C<connection_options>.  Both features help their respective users, but they
+unlikely to bring a significant amount of fanfare.
+
+=back
+
+=head1 INCREMENTING
+
+Generally releases increase one of the numbers monotonically and zero the
+following ones.  So for example:
+
+ 1.0.0
+ 1.0.1
+ 1.1.0
+ 1.2.0
+ 2.0.0
+
+There is an exception, and that is for development branches, which get released
+as development releases.  The following is an example of such a situation:
+
+ 1.0.0
+ 1.999.0_01
+ 1.999.0_02
+ 1.0.1
+ 1.1.0
+ 1.999.0_03
+ 1.2.0
+ 1.999.0_04
+ 2.0.0
+
+Or to be more clear:
+
+ 1.0.0
+   |         1.999.0_01
+   |         1.999.0_02
+ 1.0.1          |
+ 1.1.0          |
+   |         1.999.0_03
+ 1.2.0          |
+             1.999.1 TRIAL
+             2.0.0
+
+=head1 DEVELOPMENT VERSIONS
+
+Development versions come in two flavors: beta and alpha.
+
+Alpha releases are not recommended for end users to install.
+Alpha releases have an underscore followed by another number appended.
+The accuracy of the alpha number (character count) is up to the releaser,
+but two digits is customary and recommended.
+
+Beta releases are for users to test and are made to ensure that large
+changes do not break any functionality that users depend on but the
+C<DBIx::Class> test suite does not cover.  Beta release numbers are not actually
+different, but their dist is released with a -TRIAL before the tarball's
+extension.
+
