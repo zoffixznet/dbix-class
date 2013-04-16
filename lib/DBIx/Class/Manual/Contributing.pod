@@ -47,13 +47,47 @@ L<http://github.com/dbsrgits/dbix-class> is the official DBIx::Class
 repo, use the "Fork" button near the top right of the page to create
 your own copy of the repo.
 
-=item Make documentation changes
+=head2 Submitting simple documentation patches
 
 For pure documentation changes, you can now find the appropriate file
 to change using the GitHub interface, hit the "Edit" link and make the
 required changes.
 
-=item Make code and test changes
+=head3 For the CLI people
+
+=over
+
+=item * make sure your name and email is set in the global or repository git config
+
+=item * make the documentation changes
+
+=item * git add -u
+
+=item * git commit -m 'foo'
+
+=item * git format-patch origin/master
+
+=item * nopaste patches
+
+=back
+
+=head3 For point-click people
+
+=over
+
+=item * get a GitHub account or login to your existing account
+
+=item * make a fork of http://github.com/dbix-class/DBIx-Class
+
+=item * in your fork, go to the file, and click edit at the top right of the file viewer
+
+=item * commit your changes with the button at the bottom
+
+=item * paste a link in IRC or do a pull request (preferably the former)
+
+=back
+
+=head2 Submitting bigger features
 
 To make code and test changes, you need to checkout the repository
 content onto your own computer, so the tests can be run.
@@ -84,42 +118,6 @@ To submit changes back to the main DBIx::Class repository, use the
 Use the IRC channel or mailing list to keep up with the progress of your patch.
 
 =back
-
-=head2 Submitting simple documentation patches
-
-=head3 For the CLI people
-
-=over
-
-=item * make sure your name and email is set in the global or repository git config
-
-=item * HACK HACK HACK
-
-=item * git commit -m 'foo'
-
-=item * git format-patch origin/master
-
-=item * nopaste patches
-
-=back
-
-=head3 For point-click people
-
-=over
-
-=item * get a GitHub account or login to your existing account
-
-=item * make a fork of http://github.com/dbix-class/DBIx-Class
-
-=item * in your fork, go to the file, and click edit at the top right of the file viewer
-
-=item * commit your changes with the button at the bottom
-
-=item * paste a link in IRC or do a pull request (preferably the former)
-
-=back
-
-=head2 Submitting bigger features
 
 =over
 
