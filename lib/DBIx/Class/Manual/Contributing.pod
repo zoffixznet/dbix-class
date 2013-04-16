@@ -10,47 +10,50 @@ DBIx::Class::Manual::Contributing - How to get involved in DBIx::Class
 
 To save yourself, and the DBIx::Class maintainers time, please take a
 moment to verify your ideas with other DBIx::Class users. Use the IRC
-channel (#dbix-class on irc.perl.org) or the mailing list L<> to get
-quick feedback on the change you'd like to make. Your idea may already
-be a work in progress you can help contribute to, and avoid
-duplicating effort, or there may be a better way to solve your
-problem.
+channel irc.perl.org#dbix-class or the mailing list
+L<http://lists.scsys.co.uk/mailman/listinfo/dbix-class> to get quick feedback
+on the change you'd like to make. Your idea may already be a work in progress
+you can help contribute to, and avoid duplicating effort, or there may be a
+better way to solve your problem.
 
 =head2 Getting the latest content
 
-DBIx::Class's source code is stored in a respoitory using the git
-version control system(L<http://??.com>). To contribute patches,
-whether code or for the documentation, please make sure you have a
-copy of the latest content.
+DBIx::Class's source code is stored in a respoitory using the git version
+control system
+L<http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=dbsrgits/DBIx-Class.git>.
+There is also a GitHub mirror L<https://github.com/dbsrgits/DBIx-Class> if you
+prefer its user interface.
+To contribute patches, whether code or for the documentation, please make
+sure you have a copy of the latest content.
 
-=head3 Using github.com
+=head3 Using GitHub
 
 L<http://github.com> allows you to contribute to git based projects
-using only your web browser. Use it ig you want to make casual/quick
+using only your web browser. Use it if you want to make casual/quick
 contributions to documentation.
 
-You can also use github to manage your forks of git based projects,
+You can also use GitHub to manage your forks of git based projects,
 and contribute more complex patches (which require running tests).
 
 =over
 
-=item Create/Login to an account on gihub
+=item Create/Login to an account on GitHub
 
 Visit L<http://github.com> and create an account, or login to your existing account.
 
-=item Visit the official DBIx::Class github repo, and fork it
+=item Visit the official DBIx::Class GitHub repo, and fork it
 
 L<http://github.com/dbsrgits/dbix-class> is the official DBIx::Class
 repo, use the "Fork" button near the top right of the page to create
 your own copy of the repo.
 
-=item Make your changes in your local copy (Docs)
+=item Make documentation changes
 
 For pure documentation changes, you can now find the appropriate file
-to change using the github interface, hit the "Edit" link and make the
+to change using the GitHub interface, hit the "Edit" link and make the
 required changes.
 
-=item Make your changes (Code + tests)
+=item Make code and test changes
 
 To make code and test changes, you need to checkout the repository
 content onto your own computer, so the tests can be run.
@@ -59,24 +62,24 @@ content onto your own computer, so the tests can be run.
 
 =item * Linux / Unix systems
 
-Run the "git clone" command passing it the url of your dbix-class fork, for example:
+Run the "git clone" command passing it the url of your DBIx::Class fork, for example:
 
-    git clone http://github.com/castaway/dbix-class 
+    git clone https://github.com/yourname/dbix-class.git
 
-This will create a directory "DBIx-Class" in your current directory,
-and extract all the dbix-class code into it.
+This will create a directory "dbix-class" in your current directory,
+and extract all the DBIx::Class code into it.
 
 =item * Windows systems
 
-??
+L<msysGit|http://msysgit.github.io> is the most used git client for Windows.
+There is also GitHub for Windows L<http://windows.github.com>.
 
 =back
 
-=item Once tested, notify the dbix-class maintainers of the changes
+=item Once tested, notify the DBIx::Class maintainers of the changes
 
 To submit changes back to the main DBIx::Class repository, use the
-"Send pull request" button on the top right of your github.com
-repository page.
+"Send pull request" button on the top right of your GitHub repository page.
 
 Use the IRC channel or mailing list to keep up with the progress of your patch.
 
@@ -86,74 +89,142 @@ Use the IRC channel or mailing list to keep up with the progress of your patch.
 
 =head3 For the CLI people
 
-# make sure your name and email is set
-# HACK HACK HACK
-git commit -m 'foo'
-git format-patch origin/master
-# nopaste patches
+=over
+
+=item * make sure your name and email is set in the global or repository git config
+
+=item * HACK HACK HACK
+
+=item * git commit -m 'foo'
+
+=item * git format-patch origin/master
+
+=item * nopaste patches
+
+=back
 
 =head3 For point-click people
 
-Get a github account
-make a fork of http://github.com/dbix-class/DBIx-Class
-in your fork, go to the file, and click edit at the top right of the file viewer
-Commit your changes with the button at the bottom
-Paste a link in IRC or do a pull request (preferably the former)
+=over
 
-=head2 Bigger features
+=item * get a GitHub account or login to your existing account
 
-# make a fork on github or gitorious or whatever and branch off of master
+=item * make a fork of http://github.com/dbix-class/DBIx-Class
 
-# HACK HACK HACK
-git commit -m 'foo'
+=item * in your fork, go to the file, and click edit at the top right of the file viewer
 
-git rebase --root --onto sc/master
-# get rid of useless commits and take out warns, commented out code, fixup commit messages, etc
-git rebase --root --onto sc/master -i
-git push gh
-# pull request
+=item * commit your changes with the button at the bottom
 
+=item * paste a link in IRC or do a pull request (preferably the former)
+
+=back
+
+=head2 Submitting bigger features
+
+=over
+
+=item * make a fork on GitHub or Gitorious
+
+=item * git clone https://github.com/yourname/dbix-class.git
+
+=item * git branch people/yourname/featurename
+
+=item * HACK HACK HACK
+
+=item * git commit -m 'foo'
+
+=item * git rebase --root --onto sc/master
+
+=item * get rid of useless commits and take out warns, commented out code, fixup commit messages, etc
+
+=item * git rebase --root --onto sc/master -i
+
+=item * git push gh
+
+=item * pull request
+
+=back
 
 =head1 MAINTAINERS
 
-=head2 Simple documentation patches
+=head2 Apply simple documentation patches
 
-# download patch
-git am patchfile
-# do the following if the user didn't
-git --amend -m $revised_commit_mesg --author 'Firstname Lastname <email>'
+=over
 
-=head2 Bigger features
+=item * download patch
 
-git co master
-git co -b remote-thingy
-git pull git://github.com/frew/DBIx-Class.git branch
-git log -p
-# rebase to clean up history if need be
-git co master
-git merge remote-thingy
+=item * git am patchfile
+
+=item * do the following if the user didn't
+
+=item * git --amend -m $revised_commit_mesg --author 'Firstname Lastname <email>'
+
+=back
+
+=head2 Apply bigger features
+
+=over
+
+=item * git co master
+
+=item * git co -b remote-thingy
+
+=item * git pull https://github.com/contributor/dbix-class.git branch
+
+=item * git log -p
+
+=item * rebase to clean up history if need be
+
+=item * git co master
+
+=item * git merge remote-thingy
+
+=back
 
 =head2 Releases
 
-ensure Changes is up to date
-set Changes version and timestamp
-bump version in DBIx/Class.pm
-git add lib/DBIx/Class.pm Changes
-git ci -m 'release $version'
-git tag v$version -m '$version tag'
-perl Makefile.PL
-make manifest
-make disttest
-make dist
-make upload
-bump version in DBIx/Class.pm to include _01 for master users
+=over
 
-=head2 Syncronize with other mirrors
+=item * ensure Changes is up to date
 
-git clone git://git.shadowcat.co.uk/dbsrgits/DBIx-Class.git --mirror
-cd DBIx-Class.git
-git remote add github git@github.com:dbix-class/DBIx-Class.git
+=item * set Changes version and timestamp
 
-git fetch --tags --prune origin
-git fetch --prune origin
-git push --all github
+=item * bump version in DBIx/Class.pm
+
+=item * git add lib/DBIx/Class.pm Changes
+
+=item * git ci -m 'release $version'
+
+=item * git tag v$version -m '$version tag'
+
+=item * perl Makefile.PL
+
+=item * make manifest
+
+=item * make disttest
+
+=item * make dist
+
+=item * make upload
+
+=item * bump version in DBIx/Class.pm to include _01 for master users
+
+=back
+
+=head2 Synchronize with other mirrors
+
+=over
+
+=item * git clone git://git.shadowcat.co.uk/dbsrgits/DBIx-Class.git --mirror
+
+=item * cd DBIx-Class.git
+
+=item * git remote add github git@github.com:dbix-class/DBIx-Class.git
+
+=item * git fetch --tags --prune origin
+
+=item * git fetch --prune origin
+
+=item * git push --all github
+
+=back
