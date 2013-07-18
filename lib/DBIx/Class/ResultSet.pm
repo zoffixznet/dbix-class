@@ -4040,10 +4040,6 @@ identifier aliasing. You can however alias a function, so you can use it in
 e.g. an C<ORDER BY> clause. This is done via the C<-as> B<select function
 attribute> supplied as shown in the example above.
 
-B<NOTE:> You need to explicitly quote '+select'/'+as' when defining the attributes.
-Not doing so causes Perl to incorrectly interpret them as a bareword with a
-unary plus operator before it.
-
 =head2 +select
 
 =over 4
@@ -4051,6 +4047,10 @@ unary plus operator before it.
 Indicates additional columns to be selected from storage.  Works the same as
 L</select> but adds columns to the default selection, instead of specifying
 an explicit list.
+
+B<NOTE:> You need to explicitly quote '+select'/'+as' when defining the attributes.
+Not doing so causes Perl to incorrectly interpret them as a bareword with a
+unary plus operator before it.
 
 =back
 
