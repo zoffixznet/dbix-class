@@ -156,6 +156,13 @@ sub _exec_svp_begin {
 # A new SAVE TRANSACTION with the same name releases the previous one.
 sub _exec_svp_release { 1 }
 
+sub bind_attribute_by_data_type {
+  $_[1] =~ /^ (?: int(?:eger)? | (?:tiny|small|medium)int ) $/ix
+    ? DBI::SQL_INTEGER()
+    : undef
+  ;
+}
+
 sub _exec_svp_rollback {
   my ($self, $name) = @_;
 
