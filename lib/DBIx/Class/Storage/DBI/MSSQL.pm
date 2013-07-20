@@ -40,6 +40,9 @@ sub __sql_server_x_or_higher {
   return undef;
 }
 
+sub __offset_bindtype { +{ dbd_attrs => DBI::SQL_INTEGER() } }
+sub __rows_bindtype   { +{ dbd_attrs => DBI::SQL_INTEGER() } }
+
 sub _sql_server_2005_or_higher { shift->__sql_server_x_or_higher(9) }
 sub _sql_server_2012_or_higher { shift->__sql_server_x_or_higher(11) }
 
@@ -155,13 +158,6 @@ sub _exec_svp_begin {
 
 # A new SAVE TRANSACTION with the same name releases the previous one.
 sub _exec_svp_release { 1 }
-
-sub bind_attribute_by_data_type {
-  $_[1] =~ /^ (?: int(?:eger)? | (?:tiny|small|medium)int ) $/ix
-    ? DBI::SQL_INTEGER()
-    : undef
-  ;
-}
 
 sub _exec_svp_rollback {
   my ($self, $name) = @_;
