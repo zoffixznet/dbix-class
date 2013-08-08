@@ -3966,12 +3966,23 @@ earlier versions of DBIC, but this is deprecated.)
 
 Essentially C<columns> does the same as L</select> and L</as>.
 
-    columns => [ 'foo', { bar => 'baz' } ]
+    columns => [ 'foo', { column_identifier => 'baz' } ]
 
 is the same as
 
     select => [qw/foo baz/],
-    as => [qw/foo bar/]
+    as => [qw/foo column_identifier/]
+
+If you want to retrieve related columns you have to use the hash syntax
+to specify the full-qualified path to the column as the key and the
+relname.colname as the value:
+
+    my $rs = $schema->resultset('Artist')->search(undef, {
+        columns  => [ { 'cds.tracks.name' => 'tracks.name' } ],
+        join     => { cds => 'tracks'},
+        # required to tell DBIC to collapse has_many relationships
+        collapse => 1,
+    });
 
 =head2 +columns
 
