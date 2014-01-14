@@ -247,7 +247,7 @@ my $rs = $schema->resultset( 'CD' );
 {
   my $a = [{ artist => { -x => 1 } }, 'cd', { artist => [{ -x => 1 }, 'manager' ] }];
   my $b = { artist => { -x => 1, 'manager' => [{ artist => { -x => 1 } }, 'label' ] } };
-  my $expected = [{ artist => { -x => 1 } }, 'cd', { artist => { -x => 1, { 'manager' => [{ artist => { -x => 1 } }, 'label' ] } } } ];
+  my $expected = [{ artist => { -x => 1 } }, 'cd', { artist => [ { -x => 1 }, { 'manager' => [{ artist => { -x => 1 } }, 'label' ] } ] } ];
   my $result = $rs->_merge_joinpref_attr($a, $b);
   is_deeply( $result, $expected );
 }

@@ -3675,118 +3675,179 @@ sub _resolved_attrs {
   return $self->{_attrs} = $attrs;
 }
 
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
+use Data::Dumper;
+
 sub _rollout_attr {
-  my ($self, $attr) = @_;
+    my ( $self, $attr ) = @_;
+    return [ $attr ] unless ref $attr;
+    return [ map +{ $_ => $attr->{$_} }, keys %$attr ]
+        if ref $attr eq 'HASH';
 
-  if (ref $attr eq 'HASH') {
-    return $self->_rollout_hash($attr);
-  } elsif (ref $attr eq 'ARRAY') {
-    return $self->_rollout_array($attr);
-  } else {
-    return [$attr];
-  }
+    return $attr;
 }
 
-sub _rollout_array {
-  my ($self, $attr) = @_;
+sub _rollin_array {
+    my ( $self, $attr ) = @_;
 
-  my @rolled_array;
-  foreach my $element (@{$attr}) {
-    if (ref $element eq 'HASH') {
-      push( @rolled_array, @{ $self->_rollout_hash( $element ) } );
-    } elsif (ref $element eq 'ARRAY') {
-      #  XXX - should probably recurse here
-      push( @rolled_array, @{$self->_rollout_array($element)} );
-    } else {
-      push( @rolled_array, $element );
+    my %rolled_hash;
+    foreach my $element ( @$attr ) {
+        if ( ref $element eq 'HASH' ) {
+            my $key = (keys %$element)[0];
+            $rolled_hash{ $key } = $element->{ $key };
+        } elsif ( ref $element eq 'ARRAY' ) {
+            #TODO: what to do?
+        } else {
+            $rolled_hash{ $element } = undef;
+        }
     }
-  }
-  return \@rolled_array;
-}
-
-sub _rollout_hash {
-  my ($self, $attr) = @_;
-
-  my @rolled_array;
-  foreach my $key (keys %{$attr}) {
-    push( @rolled_array, { $key => $attr->{$key} } );
-  }
-  return \@rolled_array;
+    return \%rolled_hash;
 }
 
 sub _calculate_score {
-  my ($self, $a, $b) = @_;
+    my ( $self, $v1, $v2 ) = @_;
 
-  if (defined $a xor defined $b) {
-    return 0;
-  }
-  elsif (not defined $a) {
-    return 1;
-  }
+    return 1 if not defined $v1 and not defined $v2;
+    return 0 if not defined $v1 or  not defined $v2;
 
-  if (ref $b eq 'HASH') {
-    my ($b_key) = keys %{$b};
-    if (ref $a eq 'HASH') {
-      my ($a_key) = keys %{$a};
-      if ($a_key eq $b_key) {
-        return (1 + $self->_calculate_score( $a->{$a_key}, $b->{$b_key} ));
-      } else {
-        return 0;
-      }
-    } else {
-      return ($a eq $b_key) ? 1 : 0;
+    for ( $v1, $v2 ) {
+        $_ = $self->_rollin_array( $_ )
+            if ref eq 'ARRAY';
     }
-  } else {
-    if (ref $a eq 'HASH') {
-      my ($a_key) = keys %{$a};
-      return ($b eq $a_key) ? 1 : 0;
-    } else {
-      return ($b eq $a) ? 1 : 0;
+
+    if ( ref $v2 eq 'HASH' ) {
+        my $sum = 0;
+        for my $v2_key ( keys %$v2 ) {
+            if ( ref $v1 eq 'HASH') {
+                if ( exists $v1->{ $v2_key } ) {
+                    $sum += (
+                        1 + $self->_calculate_score(
+                            $v1->{$v2_key}, $v2->{$v2_key}
+                        )
+                    );
+                }
+            }
+            elsif ( $v1 eq $v2_key ) {
+                $sum++;
+            }
+        }
+        return $sum;
     }
-  }
+    else {
+        if ( ref $v1 eq 'HASH' ) {
+            return ( exists $v1->{$v2} ) ? 1 : 0;
+        }
+        else {
+            return ( $v2 eq $v1 ) ? 1 : 0;
+        }
+    }
 }
 
 sub _merge_joinpref_attr {
-  my ($self, $orig, $import) = @_;
+    my ($self, $orig, $import) = @_;
 
-  return $import unless defined($orig);
-  return $orig unless defined($import);
+    return $import unless defined $orig;
+    return $orig   unless defined $import;
 
-  $orig = $self->_rollout_attr($orig);
-  $import = $self->_rollout_attr($import);
+    my $orig_was_array = ref $orig eq 'ARRAY';
 
-  my $seen_keys;
-  foreach my $import_element ( @{$import} ) {
-    # find best candidate from $orig to merge $b_element into
-    my $best_candidate = { position => undef, score => 0 }; my $position = 0;
-    foreach my $orig_element ( @{$orig} ) {
-      my $score = $self->_calculate_score( $orig_element, $import_element );
-      if ($score > $best_candidate->{score}) {
-        $best_candidate->{position} = $position;
-        $best_candidate->{score} = $score;
-      }
-      $position++;
+    $orig   = $self->_rollout_attr( $orig   );
+    $import = $self->_rollout_attr( $import );
+
+    my $seen_keys;
+    my $is_special = 0;
+
+    for my $import_element ( @$import ) {
+        # find best candidate from $orig to merge $import_element into
+        my $best_candidate = {
+            position => undef,
+            score    => 0,
+        };
+
+        for my $idx ( 0 .. $#$orig ) {
+            my $score = $self->_calculate_score(
+                $orig->[ $idx ],
+                $import_element,
+            );
+
+            if ( $score > $best_candidate->{score} ) {
+                $best_candidate->{position} = $idx;
+                $best_candidate->{score}    = $score;
+            }
+        }
+
+        my $import_key = ref $import_element eq 'HASH'
+            ? (keys %$import_element)[0]
+            : $import_element;
+
+        $import_key = ''
+            unless defined $import_key;
+
+        if ( $best_candidate->{score} == 0 or exists $seen_keys->{ $import_key } ) {
+            if ( $import_key =~ /^-/ ) {
+                for my $orig_key_check ( %{ $self->_rollin_array( $orig ) } ) {
+                    die "Cannot import custom attributes if some already exist"
+                        if $orig_key_check =~ /^-/
+                            and $orig_key_check ne $import_key;
+                }
+            }
+            push @$orig, $import_element;
+        }
+        else {
+            my $orig_best = $orig->[ $best_candidate->{position} ];
+
+            # merge $orig_best and $import_element together
+            # ... and replace original with merged
+
+            if ( ref $orig_best ne 'HASH' ) {
+                $orig->[ $best_candidate->{position} ] = $import_element;
+            }
+            elsif ( ref $import_element eq 'HASH' ) {
+                my ( $key ) = keys %$orig_best;
+                if ( $key =~ /^-/ ) {
+                    die "The imported custom attribute differs from the orignal"
+                        if exists $import_element->{ $key }
+                            and not Data::Compare::Compare(
+                                     $orig_best->{ $key },
+                                $import_element->{ $key },
+                            );
+
+                    $is_special = 1;
+                }
+                else {
+                    $orig_best->{ $key } = $self->_merge_joinpref_attr(
+                             $orig_best->{ $key },
+                        $import_element->{ $key },
+                    );
+                }
+            }
+        }
+        $seen_keys->{ $import_key } = 1; # don't merge the same key twice
     }
-    my ($import_key) = ( ref $import_element eq 'HASH' ) ? keys %{$import_element} : ($import_element);
-    $import_key = '' if not defined $import_key;
 
-    if ($best_candidate->{score} == 0 || exists $seen_keys->{$import_key}) {
-      push( @{$orig}, $import_element );
-    } else {
-      my $orig_best = $orig->[$best_candidate->{position}];
-      # merge orig_best and b_element together and replace original with merged
-      if (ref $orig_best ne 'HASH') {
-        $orig->[$best_candidate->{position}] = $import_element;
-      } elsif (ref $import_element eq 'HASH') {
-        my ($key) = keys %{$orig_best};
-        $orig->[$best_candidate->{position}] = { $key => $self->_merge_joinpref_attr($orig_best->{$key}, $import_element->{$key}) };
-      }
-    }
-    $seen_keys->{$import_key} = 1; # don't merge the same key twice
-  }
 
-  return @$orig ? $orig : ();
+    return $self->_rollin_array( $orig )
+        if $is_special
+            and @$orig
+            and not $orig_was_array;
+
+    return @$orig ? $orig : ();
 }
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
+###############################
 
 {
   my $hm;
